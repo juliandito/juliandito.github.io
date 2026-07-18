@@ -97,22 +97,26 @@ function App() {
             <div className="glow-ring rounded-2xl border border-base-300/70 bg-base-100/70 p-6 sm:p-8">
               <h2 className="mb-5 text-2xl font-bold text-white">About Me</h2>
               <p className="text-base leading-8 text-slate-200">
-                Hi! My name is <strong className="text-white">Kevin Juliandito</strong>. I am a
-                Software Engineer at <strong className="text-white">Visual Analysis</strong> with
-                around <strong className="text-white">4 years of hands-on experience</strong> building and maintaining production-grade applications.
+                Hi! I&apos;m <strong className="text-white">Kevin Juliandito</strong>, a Senior
+                Fullstack Developer at <strong className="text-white">Brighty Official</strong> with
+                over <strong className="text-white">5 years of experience</strong> building scalable
+                SaaS products, enterprise applications, and modern web platforms. I specialize in
+                developing production-grade software using Go, TypeScript, Python, PHP, React, and
+                Vue.js, with expertise in backend architecture, authentication, cloud infrastructure,
+                CI/CD, observability, and application security.
               </p>
               <p className="mt-4 text-base leading-8 text-slate-200">
-                I focus on shipping <strong className="text-white">effective, testable, and
-                scalable products</strong>, from feature discovery to delivery. My work spans
-                fullstack implementation, especially on data-heavy dashboards, internal tools, and
-                user-facing web platforms that need strong performance and clear UX.
+                I enjoy building SaaS products that are secure, scalable, and maintainable.
+                Throughout my career, I&apos;ve delivered features across the entire product lifecycle,
+                from system design and implementation to deployment and operational improvements,
+                working on SaaS platforms, data intelligence systems, ERP solutions, and Learning
+                Management Systems (LMS).
               </p>
               <p className="mt-4 text-base leading-8 text-slate-200">
-                I enjoy close collaboration with designers, QA, and product stakeholders to align
-                technical direction with business goals. I have also taken the role of
-                <strong className="text-white"> Scrum Master</strong>, applying
-                <strong className="text-white"> Agile Scrum practices</strong> to help teams deliver
-                reliably and continuously improve execution.
+                Beyond engineering, I collaborate closely with product, design, and QA teams in
+                Agile environments and have served as a
+                <strong className="text-white"> Scrum Master</strong>, helping teams improve
+                collaboration, streamline delivery, and continuously ship high-quality software.
               </p>
 
               <div className="mt-6">
