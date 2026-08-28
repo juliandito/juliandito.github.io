@@ -155,10 +155,6 @@ function App() {
         </div>
       </main>
 
-      <footer className="px-4 pb-10 pt-2 text-center text-sm text-base-content/60 sm:px-6 lg:px-8">
-        Built with React, TypeScript, Tailwind CSS, and DaisyUI for GitHub Pages.
-      </footer>
-
       <ProjectModal
         key={selectedProject?.id ?? 'project-modal'}
         project={selectedProject}
