@@ -41,14 +41,14 @@ function App() {
           className="relative h-52 w-full overflow-hidden sm:h-64"
           style={{
             background:
-              'radial-gradient(ellipse at 30% 60%, rgba(34,211,238,0.12), transparent 55%), linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #0f172a 100%)',
+              'linear-gradient(135deg, rgba(200,111,77,0.18) 0%, rgba(247,242,233,0.76) 46%, rgba(87,121,156,0.18) 100%)',
           }}
         >
           <div
             className="absolute inset-0 opacity-[0.06]"
             style={{
               backgroundImage:
-                'repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(34,211,238,0.5) 31px,rgba(34,211,238,0.5) 32px),repeating-linear-gradient(90deg,transparent,transparent 63px,rgba(34,211,238,0.3) 63px,rgba(34,211,238,0.3) 64px)',
+                'repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(111,102,95,0.55) 31px,rgba(111,102,95,0.55) 32px),repeating-linear-gradient(90deg,transparent,transparent 63px,rgba(111,102,95,0.35) 63px,rgba(111,102,95,0.35) 64px)',
             }}
           />
         </div>
@@ -56,7 +56,7 @@ function App() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           {/* Page title */}
           <div className="mb-10 mt-8">
-            <h1 className="text-4xl font-bold text-white sm:text-5xl">Hi There! ✨</h1>
+            <h1 className="font-display text-4xl font-semibold text-base-content sm:text-5xl">Hi There! ✨</h1>
           </div>
 
           {/* About section */}
@@ -72,7 +72,7 @@ function App() {
               </div>
 
               <div>
-                <h3 className="mb-3 text-base font-semibold text-white">Let&apos;s Connect</h3>
+                <h3 className="mb-3 text-base font-semibold text-base-content">Let&apos;s Connect</h3>
                 <div className="flex flex-col gap-2">
                   {contactLinks.map((item) => {
                     const Icon = contactIcons[item.label as keyof typeof contactIcons]
@@ -85,7 +85,7 @@ function App() {
                         className="flex items-center gap-3 rounded-2xl border border-base-300/70 bg-base-100/70 px-4 py-3 transition duration-200 hover:border-info/40 hover:bg-base-100"
                       >
                         <Icon size={15} className="shrink-0 text-info" />
-                        <span className="truncate text-sm text-slate-200">{item.value}</span>
+                        <span className="truncate text-sm text-base-content/80">{item.value}</span>
                       </a>
                     )
                   })}
@@ -95,32 +95,32 @@ function App() {
 
             {/* Right: About Me */}
             <div className="glow-ring rounded-2xl border border-base-300/70 bg-base-100/70 p-6 sm:p-8">
-              <h2 className="mb-5 text-2xl font-bold text-white">About Me</h2>
-              <p className="text-base leading-8 text-slate-200">
-                Hi! I&apos;m <strong className="text-white">Kevin Juliandito</strong>, a Senior
-                Fullstack Developer at <strong className="text-white">Brighty Official</strong> with
-                over <strong className="text-white">5 years of experience</strong> building scalable
+              <h2 className="font-display mb-5 text-2xl font-semibold text-base-content">About Me</h2>
+              <p className="text-base leading-8 text-base-content/80">
+                Hi! I&apos;m <strong className="text-base-content">Kevin Juliandito</strong>, a Senior
+                Fullstack Developer at <strong className="text-base-content">Brighty Official</strong> with
+                over <strong className="text-base-content">5 years of experience</strong> building scalable
                 SaaS products, enterprise applications, and modern web platforms. I specialize in
                 developing production-grade software using Go, TypeScript, Python, PHP, React, and
                 Vue.js, with expertise in backend architecture, authentication, cloud infrastructure,
                 CI/CD, observability, and application security.
               </p>
-              <p className="mt-4 text-base leading-8 text-slate-200">
+              <p className="mt-4 text-base leading-8 text-base-content/80">
                 I enjoy building SaaS products that are secure, scalable, and maintainable.
                 Throughout my career, I&apos;ve delivered features across the entire product lifecycle,
                 from system design and implementation to deployment and operational improvements,
                 working on SaaS platforms, data intelligence systems, ERP solutions, and Learning
                 Management Systems (LMS).
               </p>
-              <p className="mt-4 text-base leading-8 text-slate-200">
+              <p className="mt-4 text-base leading-8 text-base-content/80">
                 Beyond engineering, I collaborate closely with product, design, and QA teams in
                 Agile environments and have served as a
-                <strong className="text-white"> Scrum Master</strong>, helping teams improve
+                <strong className="text-base-content"> Scrum Master</strong>, helping teams improve
                 collaboration, streamline delivery, and continuously ship high-quality software.
               </p>
 
               <div className="mt-6">
-                <h3 className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-slate-300">
+                <h3 className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-base-content/65">
                   Skills &amp; Tools
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -129,13 +129,13 @@ function App() {
                   ))}
                 </div>
               </div>
-              <p className="mt-5 text-sm text-slate-300">
+              <p className="mt-5 text-sm text-base-content/65">
                 Want to know more about me? Check out my resume here!
               </p>
               <a
                 href={resumeHref}
                 download
-                className="mt-4 inline-flex items-center gap-2 rounded-xl border border-base-300/70 bg-base-200/60 px-4 py-2.5 text-sm text-slate-200 transition duration-200 hover:border-info/40 hover:bg-base-200"
+                className="mt-4 inline-flex items-center gap-2 rounded-xl border border-base-300/70 bg-base-200/60 px-4 py-2.5 text-sm text-base-content/80 transition duration-200 hover:border-info/40 hover:bg-base-200"
               >
                 <FileText size={15} className="text-info" />
                 My Resume
@@ -145,7 +145,7 @@ function App() {
 
           {/* Projects section */}
           <div className="mb-16">
-            <h2 className="mb-5 text-2xl font-bold text-white">My Featured Projects 🚀</h2>
+            <h2 className="font-display mb-5 text-2xl font-semibold text-base-content">My Featured Projects 🚀</h2>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-2 xl:grid-cols-3 xl:gap-7">
               {projects.map((project) => (
                 <ProjectCard key={project.id} project={project} onSelect={setSelectedProject} />
@@ -155,7 +155,7 @@ function App() {
         </div>
       </main>
 
-      <footer className="px-4 pb-10 pt-2 text-center text-sm text-slate-400 sm:px-6 lg:px-8">
+      <footer className="px-4 pb-10 pt-2 text-center text-sm text-base-content/60 sm:px-6 lg:px-8">
         Built with React, TypeScript, Tailwind CSS, and DaisyUI for GitHub Pages.
       </footer>
 
