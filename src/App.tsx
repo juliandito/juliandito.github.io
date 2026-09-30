@@ -1,10 +1,28 @@
 import { useState } from 'react'
-import { ExternalLink, FileText, FolderGit2, Mail } from 'lucide-react'
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Boxes,
+  Download,
+  ExternalLink,
+  FolderGit2,
+  Mail,
+  ServerCog,
+  Workflow,
+} from 'lucide-react'
 
-import { Badge } from './components/Badge'
 import { ProjectCard } from './components/ProjectCard'
 import { ProjectModal } from './components/ProjectModal'
-import { contactLinks, profilePhoto, projects, resumeHref } from './data/portfolio'
+import { SectionWrapper } from './components/SectionWrapper'
+import {
+  capabilities,
+  contactLinks,
+  experience,
+  profilePhoto,
+  projects,
+  proofPoints,
+  resumeHref,
+} from './data/portfolio'
 import type { Project } from './types'
 
 const contactIcons = {
@@ -13,147 +31,176 @@ const contactIcons = {
   GitHub: FolderGit2,
 }
 
-const skillTools = [
-  'React',
-  'TypeScript',
-  'Vue.js',
-  'Python Django',
-  'NestJS',
-  'Golang',
-  'PHP Laravel',
-  'PostgreSQL',
-  'MySQL',
-  'MSSQL',
-  'Docker',
-  'Kubernetes',
-  'Jenkins',
-  'Agile Scrum',
-]
+const capabilityIcons = [Boxes, ServerCog, Workflow]
 
 function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
   return (
     <div data-theme="portfolio" className="min-h-screen bg-base-200 text-base-content">
-      <main>
-        {/* Cover banner */}
-        <div
-          className="relative h-52 w-full overflow-hidden sm:h-64"
-          style={{
-            background:
-              'linear-gradient(135deg, rgba(200,111,77,0.18) 0%, rgba(247,242,233,0.76) 46%, rgba(87,121,156,0.18) 100%)',
-          }}
+      <header className="site-header">
+        <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Primary navigation">
+          <a href="#top" className="font-display text-xl font-semibold tracking-normal text-base-content">
+            KJ<span className="text-primary">.</span>
+          </a>
+          <div className="flex items-center gap-1 sm:gap-3">
+            <a href="#expertise" className="nav-link hidden sm:inline-flex">Expertise</a>
+            <a href="#experience" className="nav-link hidden md:inline-flex">Experience</a>
+            <a href="#work" className="nav-link">Work</a>
+            <a href={resumeHref} download className="nav-resume">
+              <Download size={15} aria-hidden="true" />
+              <span className="hidden sm:inline">Resume</span>
+            </a>
+          </div>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section className="hero-grid relative overflow-hidden border-b border-base-300">
+          <div className="mx-auto grid min-h-[calc(88svh-4rem)] max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.25fr_0.75fr] lg:px-8 lg:py-20">
+            <div className="hero-copy max-w-3xl">
+              <p className="section-kicker">Senior Fullstack Developer · Indonesia</p>
+              <h1 className="font-display mt-6 text-5xl font-semibold leading-[0.96] tracking-normal text-base-content sm:text-7xl lg:text-[5.6rem]">
+                Kevin Juliandito
+              </h1>
+              <p className="mt-7 max-w-2xl text-xl leading-8 text-base-content/75 sm:text-2xl sm:leading-9">
+                I design and build reliable software products and platforms, spanning user-facing features, backend architecture, deployment infrastructure, CI/CD, and observability.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#work" className="primary-action">
+                  View selected work <ArrowDown size={16} aria-hidden="true" />
+                </a>
+                <a href={resumeHref} download className="secondary-action">
+                  <Download size={16} aria-hidden="true" /> Download resume
+                </a>
+              </div>
+              <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t border-base-300 pt-5">
+                {contactLinks.map((item) => {
+                  const Icon = contactIcons[item.label as keyof typeof contactIcons]
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target={item.href.startsWith('http') ? '_blank' : undefined}
+                      rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+                      className="inline-flex items-center gap-2 text-sm font-medium text-base-content/65 transition-colors hover:text-info"
+                    >
+                      <Icon size={15} aria-hidden="true" /> {item.label}
+                    </a>
+                  )
+                })}
+              </div>
+            </div>
+
+            <div className="hero-portrait mx-auto w-full max-w-sm lg:justify-self-end">
+              <div className="relative border border-base-300 bg-base-100 p-2 shadow-[12px_12px_0_var(--blue)]">
+                <img src={profilePhoto} alt="Kevin Juliandito" className="aspect-[4/5] w-full object-cover" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section aria-label="Career overview" className="border-b border-base-300 bg-base-100">
+          <div className="mx-auto grid max-w-6xl divide-y divide-base-300 px-4 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-6 lg:px-8">
+            {proofPoints.map((point) => (
+              <div key={point.label} className="py-6 sm:px-6 sm:first:pl-0 sm:last:pr-0">
+                <p className="font-display text-3xl font-semibold text-primary">{point.value}</p>
+                <p className="mt-1 text-sm text-base-content/65">{point.label}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <SectionWrapper
+          id="expertise"
+          eyebrow="Fullstack, beyond the feature"
+          title="Engineering across product and production."
+          description="My strongest work connects user-facing product decisions with durable backend and delivery systems."
         >
-          <div
-            className="absolute inset-0 opacity-[0.06]"
-            style={{
-              backgroundImage:
-                'repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(111,102,95,0.55) 31px,rgba(111,102,95,0.55) 32px),repeating-linear-gradient(90deg,transparent,transparent 63px,rgba(111,102,95,0.35) 63px,rgba(111,102,95,0.35) 64px)',
-            }}
-          />
-        </div>
-
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          {/* Page title */}
-          <div className="mb-10 mt-8">
-            <h1 className="font-display text-4xl font-semibold text-base-content sm:text-5xl">Hi There! ✨</h1>
+          <div className="grid border-y border-base-300 md:grid-cols-3 md:divide-x md:divide-base-300">
+            {capabilities.map((capability, index) => {
+              const Icon = capabilityIcons[index]
+              return (
+                <article key={capability.title} className="border-b border-base-300 py-8 last:border-b-0 md:border-b-0 md:px-8 md:first:pl-0 md:last:pr-0">
+                  <Icon size={26} strokeWidth={1.6} className="text-primary" aria-hidden="true" />
+                  <h3 className="font-display mt-5 text-2xl font-semibold">{capability.title}</h3>
+                  <p className="mt-3 min-h-24 text-sm leading-7 text-base-content/70">{capability.description}</p>
+                  <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-2" aria-label={`${capability.title} tools`}>
+                    {capability.tools.map((tool) => (
+                      <li key={tool} className="tech-label">{tool}</li>
+                    ))}
+                  </ul>
+                </article>
+              )
+            })}
           </div>
+        </SectionWrapper>
 
-          {/* About section */}
-          <div className="mb-14 grid gap-8 lg:grid-cols-[280px_1fr]">
-            {/* Left: profile photo + contact */}
-            <div className="flex flex-col gap-6">
-              <div className="glow-ring mx-auto w-full max-w-55 overflow-hidden rounded-2xl border border-base-300/70 sm:max-w-62.5 lg:mx-0 lg:max-w-none">
-                <img
-                  src={profilePhoto}
-                  alt="Portrait of Kevin Juliandito"
-                  className="aspect-4/5 w-full object-cover"
-                />
-              </div>
-
-              <div>
-                <h3 className="mb-3 text-base font-semibold text-base-content">Let&apos;s Connect</h3>
-                <div className="flex flex-col gap-2">
-                  {contactLinks.map((item) => {
-                    const Icon = contactIcons[item.label as keyof typeof contactIcons]
-                    return (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        target={item.href.startsWith('http') ? '_blank' : undefined}
-                        rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
-                        className="flex items-center gap-3 rounded-2xl border border-base-300/70 bg-base-100/70 px-4 py-3 transition duration-200 hover:border-info/40 hover:bg-base-100"
-                      >
-                        <Icon size={15} className="shrink-0 text-info" />
-                        <span className="truncate text-sm text-base-content/80">{item.value}</span>
-                      </a>
-                    )
-                  })}
+        <SectionWrapper
+          id="experience"
+          eyebrow="Experience"
+          title="From feature delivery to systems ownership."
+          description="A compact view of the roles that shaped how I build, deploy, and improve production software."
+          tone="surface"
+        >
+          <div className="border-t border-base-300">
+            {experience.map((item, index) => (
+              <article key={`${item.company}-${item.role}`} className="experience-row">
+                <div className="md:col-span-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">{item.period}</p>
+                  <p className="mt-2 text-sm text-base-content/55">{item.location}</p>
                 </div>
-              </div>
-            </div>
-
-            {/* Right: About Me */}
-            <div className="glow-ring rounded-2xl border border-base-300/70 bg-base-100/70 p-6 sm:p-8">
-              <h2 className="font-display mb-5 text-2xl font-semibold text-base-content">About Me</h2>
-              <p className="text-base leading-8 text-base-content/80">
-                Hi! I&apos;m <strong className="text-base-content">Kevin Juliandito</strong>, a Senior
-                Fullstack Developer at <strong className="text-base-content">Brighty Official</strong> with
-                over <strong className="text-base-content">5 years of experience</strong> building scalable
-                SaaS products, enterprise applications, and modern web platforms. I specialize in
-                developing production-grade software using Go, TypeScript, Python, PHP, React, and
-                Vue.js, with expertise in backend architecture, authentication, cloud infrastructure,
-                CI/CD, observability, and application security.
-              </p>
-              <p className="mt-4 text-base leading-8 text-base-content/80">
-                I enjoy building SaaS products that are secure, scalable, and maintainable.
-                Throughout my career, I&apos;ve delivered features across the entire product lifecycle,
-                from system design and implementation to deployment and operational improvements,
-                working on SaaS platforms, data intelligence systems, ERP solutions, and Learning
-                Management Systems (LMS).
-              </p>
-              <p className="mt-4 text-base leading-8 text-base-content/80">
-                Beyond engineering, I collaborate closely with product, design, and QA teams in
-                Agile environments and have served as a
-                <strong className="text-base-content"> Scrum Master</strong>, helping teams improve
-                collaboration, streamline delivery, and continuously ship high-quality software.
-              </p>
-
-              <div className="mt-6">
-                <h3 className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-base-content/65">
-                  Skills &amp; Tools
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {skillTools.map((item) => (
-                    <Badge key={item}>{item}</Badge>
+                <div className="md:col-span-4">
+                  <h3 className="font-display text-2xl font-semibold">{item.role}</h3>
+                  <p className="mt-1 font-semibold text-info">{item.company}</p>
+                </div>
+                <ul className="space-y-3 text-sm leading-6 text-base-content/70 md:col-span-5">
+                  {item.highlights.map((highlight) => (
+                    <li key={highlight} className="flex gap-3">
+                      <span className="font-mono text-xs text-primary" aria-hidden="true">0{index + 1}</span>
+                      <span>{highlight}</span>
+                    </li>
                   ))}
-                </div>
-              </div>
-              <p className="mt-5 text-sm text-base-content/65">
-                Want to know more about me? Check out my resume here!
-              </p>
-              <a
-                href={resumeHref}
-                download
-                className="mt-4 inline-flex items-center gap-2 rounded-xl border border-base-300/70 bg-base-200/60 px-4 py-2.5 text-sm text-base-content/80 transition duration-200 hover:border-info/40 hover:bg-base-200"
-              >
-                <FileText size={15} className="text-info" />
-                My Resume
-              </a>
-            </div>
+                </ul>
+              </article>
+            ))}
           </div>
+        </SectionWrapper>
 
-          {/* Projects section */}
-          <div className="mb-16">
-            <h2 className="font-display mb-5 text-2xl font-semibold text-base-content">My Featured Projects 🚀</h2>
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-2 xl:grid-cols-3 xl:gap-7">
-              {projects.map((project) => (
-                <ProjectCard key={project.id} project={project} onSelect={setSelectedProject} />
-              ))}
-            </div>
+        <SectionWrapper
+          id="work"
+          eyebrow="Selected work"
+          title="Systems built for real constraints."
+          description="Product case studies spanning data intelligence, ERP, learning platforms, and reporting automation."
+        >
+          <div className="grid gap-5 lg:grid-cols-2">
+            {projects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} featured={index === 0} onSelect={setSelectedProject} />
+            ))}
           </div>
-        </div>
+        </SectionWrapper>
+
+        <section id="contact" className="border-t border-base-300 bg-base-content text-base-100">
+          <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 sm:px-6 md:grid-cols-[1fr_auto] md:items-end lg:px-8 lg:py-20">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-base-100/55">Let&apos;s build something durable</p>
+              <h2 className="font-display mt-4 max-w-3xl text-4xl font-semibold leading-tight tracking-normal sm:text-5xl">
+                Looking for a fullstack engineer who stays for production?
+              </h2>
+            </div>
+            <a href="mailto:sjuliandito@gmail.com" className="contact-action">
+              Start a conversation <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
+          </div>
+        </section>
       </main>
+
+      <footer className="border-t border-base-100/10 bg-base-content text-base-100/55">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+          <p>Kevin Juliandito Suhartono</p>
+          <p>Fullstack engineering · Platform delivery · Indonesia</p>
+        </div>
+      </footer>
 
       <ProjectModal
         key={selectedProject?.id ?? 'project-modal'}

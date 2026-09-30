@@ -25,9 +25,9 @@
   --color-warning-content: #29231f;
   --color-error: #b5544d;
   --color-error-content: #fffdf8;
-  --radius-selector: 0.5rem;
-  --radius-field: 0.5rem;
-  --radius-box: 0.5rem;
+  --radius-selector: 0.25rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.25rem;
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
   --border: 1px;
@@ -66,10 +66,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--paper);
-  background-image:
-    linear-gradient(rgba(111, 102, 95, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(111, 102, 95, 0.045) 1px, transparent 1px);
-  background-size: 32px 32px;
 }
 
 #root {
@@ -85,4 +81,220 @@ body {
   box-shadow:
     0 0 0 1px rgba(222, 212, 199, 0.8),
     0 8px 20px rgba(87, 69, 52, 0.08);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 85%, transparent);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.nav-link,
+.nav-resume,
+.primary-action,
+.secondary-action,
+.contact-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.nav-link {
+  padding-inline: 0.75rem;
+  color: color-mix(in srgb, var(--ink) 66%, transparent);
+}
+
+.nav-link:hover {
+  color: var(--blue);
+}
+
+.nav-resume {
+  border: 1px solid var(--line);
+  padding-inline: 0.85rem;
+  background: var(--surface);
+}
+
+.nav-resume:hover,
+.secondary-action:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.hero-grid {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(111, 102, 95, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(111, 102, 95, 0.055) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.section-kicker::before {
+  width: 2.5rem;
+  height: 1px;
+  background: var(--terracotta);
+  content: '';
+}
+
+.primary-action,
+.secondary-action {
+  min-height: 2.875rem;
+  padding-inline: 1.1rem;
+}
+
+.primary-action {
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.primary-action:hover {
+  border-color: var(--terracotta);
+  background: var(--terracotta);
+  transform: translateY(-2px);
+}
+
+.secondary-action {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.tech-label {
+  position: relative;
+  padding-left: 0.8rem;
+  color: color-mix(in srgb, var(--ink) 68%, transparent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+.tech-label::before {
+  position: absolute;
+  top: 0.42rem;
+  left: 0;
+  width: 0.3rem;
+  height: 0.3rem;
+  background: var(--green);
+  content: '';
+}
+
+.experience-row {
+  display: grid;
+  gap: 1.25rem;
+  border-bottom: 1px solid var(--line);
+  padding-block: 2rem;
+}
+
+.project-card {
+  box-shadow: 0 6px 0 transparent;
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.project-card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 6px 0 var(--blue);
+  transform: translateY(-3px);
+}
+
+.project-arrow {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--line);
+  color: var(--blue);
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.project-card:hover .project-arrow {
+  background: var(--blue);
+  color: var(--surface);
+}
+
+.contact-action {
+  width: fit-content;
+  min-height: 3rem;
+  border: 1px solid color-mix(in srgb, var(--surface) 30%, transparent);
+  padding-inline: 1.15rem;
+  color: var(--surface);
+}
+
+.contact-action:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+  transform: translateY(-2px);
+}
+
+.case-dialog {
+  scrollbar-color: var(--line) transparent;
+}
+
+.hero-copy,
+.hero-portrait {
+  animation: reveal 600ms ease both;
+}
+
+.hero-portrait {
+  animation-delay: 120ms;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .experience-row {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 2rem;
+    padding-block: 2.5rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .primary-action,
+  .secondary-action {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
